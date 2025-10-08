@@ -1,0 +1,16 @@
+fastapi
+werkzeug
+PyMuPDF
+openai-whisper
+numpy
+librosa
+soundfile
+noisereduce
+pydub
+fastapi-jwt-auth 
+slowapi 
+passlib 
+deepface
+facenet-pytorch
+tf-keras
+python-multipart
