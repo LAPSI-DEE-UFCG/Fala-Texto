@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Container para as perguntas -->
+    <FrameLayout
+        android:id="@+id/question_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Botão para gravar -->
+    <Button
+        android:id="@+id/btnFalar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Falar"
+        android:clickable="true"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcrição"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+
+    <!-- Botão para próxima pergunta -->
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avançar" />
+</LinearLayout>
