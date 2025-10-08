@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Captura de Imagem • </title>
+  <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png">
+  <style>
+    /* Reset e layout geral */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f5f5f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Login */
+    #loginSection {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    #loginForm {
+      background-color: #1f1f1f;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      width: 90%;
+      max-width: 320px;
+    }
+    #loginForm label {
+      display: block;
+      margin-top: 1rem;
+    }
+    #loginForm input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: none;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    #loginForm button {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #loginForm button:hover {
+      background-color: #2980b9;
+    }
+    #loginStatus {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      height: 1.2em;
+      color: #f5a623;
+      text-align: center;
+    }
+
+    /* Conteúdo principal */
+    main {
+      display: none;
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    video {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    button {
+      padding: 0.7rem 1.2rem;
+      margin: 0.3rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #2980b9;
+    }
+
+    button:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+
+    #status {
+      font-weight: bold;
+      color: #8bd4ff;
+    }
+
+    pre {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      padding: 1rem;
+      width: 100%;
+      max-height: 200px;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Spinner */
+    .spinner {
+      border: 5px solid #333;
+      border-top: 5px solid #fff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      display: none;
+      margin: 1rem auto;
+    }
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 480px) {
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>📸 Cadastro Facial</h1>
+  </header>
+
+  <!-- Formulário de Login -->
+  <section id="loginSection">
+    <form id="loginForm">
+      <label for="username">Usuário</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit" id="loginBtn">🔑 Entrar</button>
+      <p id="loginStatus"></p>
+    </form>
+  </section>
+
+  <!-- Conteúdo principal (oculto até o login) -->
+  <main id="appContent">
+    <video id="video" autoplay playsinline></video>
+
+    <div>
+      <button onclick="capturePhoto()">📷 Capturar</button>
+      <button onclick="sendPhoto()" disabled id="sendBtn">📤 Enviar</button>
+    </div>
+
+    <div class="spinner" id="spinner"></div>
+    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <p id="status">Bem-Vindo  ✨</p>
+    <pre id="responseBox"></pre>
+  </main>
+
+  <script>
+    const API_BASE_URL = "https://192.168.1.5:5000";
+    // Elementos de login
+    const loginForm    = document.getElementById("loginForm");
+    const loginStatus  = document.getElementById("loginStatus");
+    const loginSection = document.getElementById("loginSection");
+    const appContent   = document.getElementById("appContent");
+
+    let token = "";
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loginStatus.textContent = "⏳ Autenticando...";
+      document.getElementById("loginBtn").disabled = true;
+
+      const payload = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+      };
+
+      try {
+        const resp = await fetch(`${API_BASE_URL}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok) {
+          token = data.access_token;
+          loginStatus.textContent = "✅ Login bem-sucedido!";
+          loginSection.style.display = "none";
+          appContent.style.display   = "flex";
+          initCamera();  // inicia câmera só após login
+        } else {
+          loginStatus.textContent = "❌ Usuário ou senha inválidos.";
+          document.getElementById("loginBtn").disabled = false;
+        }
+      } catch {
+        loginStatus.textContent = "⚠️ Erro de conexão.";
+        document.getElementById("loginBtn").disabled = false;
+      }
+    });
+
+    // Câmera e captura de imagem
+    const video    = document.getElementById("video");
+    const canvas   = document.getElementById("canvas");
+    const sendBtn  = document.getElementById("sendBtn");
+    const statusEl = document.getElementById("status");
+    const spinner  = document.getElementById("spinner");
+    let imageBlob;
+
+    function initCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => { video.srcObject = stream; })
+        .catch(() => {
+          statusEl.textContent = "⚠️ Erro ao acessar a camera.";
+        });
+    }
+
+    function capturePhoto() {
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(blob => {
+        imageBlob = blob;
+        sendBtn.disabled = false;
+        statusEl.textContent = "📸 Imagem capturada!";
+      }, "image/jpeg");
+    }
+
+    async function sendPhoto() {
+      if (!token || !imageBlob) {
+        statusEl.textContent = "⚠️ Token ou imagem ausente.";
+        return;
+      }
+      const formData = new FormData();
+      formData.append("file", imageBlob, "captura.jpg");
+      spinner.style.display = "block";
+      statusEl.textContent = "Enviando imagem...";
+
+      try {
+        const resp = await fetch(`${API_BASE_URL}/upload-imagem`, {
+          method: "POST",
+          headers: { Authorization: "Bearer " + token },
+          body: formData
+        });
+        const result = await resp.json();
+        document.getElementById("responseBox").textContent = JSON.stringify(result, null, 2);
+        statusEl.textContent = "✅ Imagem enviada!";
+        imageBlob = null;
+        sendBtn.disabled = true;
+      } catch {
+        statusEl.textContent = "❌ Erro ao enviar imagem.";
+      } finally {
+        spinner.style.display = "none";
+      }
+    }
+
+   
+  </script>
+</body>
+</html>
