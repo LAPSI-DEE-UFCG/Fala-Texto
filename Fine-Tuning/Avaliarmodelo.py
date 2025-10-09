@@ -1,7 +1,11 @@
 import torch
 import librosa
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
+import os
+import sys
 
+sys.stderr = open(os.devnull, 'w')
+logging.set_verbosity_error()
 # Configurações
 MODEL_PATH = "./whisper-small-finetuned"  
 AUDIO_FILE_PATH = "/home/fala-texto/Documents/Fine-Tuning/O abatacepte é usado para tratar artrite reumatoide, ajudando a controlar a inflamação nas articulações.m4a" 
@@ -45,4 +49,5 @@ texto_transcrito = transcribe(AUDIO_FILE_PATH)
 print("-" * 30)
 print("Texto Transcrito:")
 print(texto_transcrito)
+
 print("-" * 30)
