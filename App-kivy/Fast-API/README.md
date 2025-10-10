@@ -1,12 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 # Fala-Texto
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/af5cbef0-822c-44da-8ed0-d8f151b00301" alt="Imagem1">
-</div>
 Este documento instrui como implementar o serviço de preenchimento de formulários em um servidor Ubuntu v20.04+ com Gpu NVIDIA e seus drivers. 
-
 
 ## Pré-requisitos:
 - Ambiente linux: Ubuntu
