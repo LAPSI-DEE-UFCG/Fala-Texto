@@ -38,7 +38,7 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var speechRecognizer: SpeechRecognizer
+    //Estruturação das variáveis
     private lateinit var textView: TextView
     private lateinit var btnFalar: Button
     private lateinit var btnSalvacsv: Button
@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etB : EditText
 
     private lateinit var selectedPdfFile: File
-    //private var jwtToken: String? = null
     private lateinit var jwtToken: String
 
+    //Validando o arquivo .pdf
     private val pdfPickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             processarPdfSelecionado(uri)
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = "Nenhum arquivo selecionado"
         }
     }
+    //Conexão com o servidor
     data class LoginResponse(
         val access_token: String
     )
@@ -66,15 +67,18 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        //Puxando as variáveis do xml associadas aos componentes
         textView = findViewById(R.id.textView)
         btnSalvacsv = findViewById(R.id.btnSalvacsv)
         btnFalar = findViewById(R.id.btnGambiarra)
         etA = findViewById(R.id.et_a)
         etB = findViewById(R.id.et_b)
 
+        //Desabilita o botão para envio dos arquivos 
         btnFalar.isEnabled = false
 
         btnSalvacsv.setOnClickListener {
+            //Chama a função e inverte a lógica dos botões disponíveis
             abrirSeletorDePdf()
             btnSalvacsv.isEnabled = false
             btnFalar.isEnabled = true
@@ -92,10 +96,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun abrirSeletorDePdf() {
+        //Launcher para especificação do formato de arquivo
         pdfPickerLauncher.launch("application/pdf")
     }
 
     private fun processarPdfSelecionado(uri: Uri) {
+        //Validação do formulário após seleção pelo usuário
         val inputStream = contentResolver.openInputStream(uri) ?: return
         val nomeArquivo = "selecionado_${System.currentTimeMillis()}.pdf"
         selectedPdfFile = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), nomeArquivo)
@@ -112,9 +118,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun salvarDadosCSV() {
+        //Comunicação com o elementos do xml, a estrutura da interface
         val nome = etA.text.toString()
         val idade = etB.text.toString()
 
+        //Acesso à pasta com os arquivos .csv da aplicação em questão
         val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         val csvDir = File(directory, "Arquivos CSV")
         if (!csvDir.exists()) {
@@ -130,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         } while (file.exists()) // Continua até encontrar um nome de arquivo que não existe
 
         try {
+            //Chamada da função que escreve o arquivo, colocando já os termos em questão
             val writer = FileWriter(file)
             writer.append("Nome,Idade\n")
             writer.append("Nome:,$nome\n")
@@ -147,6 +156,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun enviarCSV(csvFile: File, pdfFile: File) {
 
+        //Comunicação com o servidor
         val csvRequest = csvFile.asRequestBody("text/csv".toMediaTypeOrNull())
         val csvPart = MultipartBody.Part.createFormData("files", csvFile.name, csvRequest)
 
