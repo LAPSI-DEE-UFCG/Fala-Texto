@@ -52,7 +52,7 @@ import java.io.PrintWriter
 import java.time.LocalTime
 import java.time.temporal.ChronoUnit
 
-
+//Definição das classes para cada registro de informação, seja respondendo perguntas ou salvando a hora
 sealed class Question(val title: String)
 class MultipleChoiceQuestion(title: String, val options: List<String>) : Question(title)
 class TextInputQuestion(title: String) : Question(title)
@@ -70,6 +70,7 @@ data class QuestionAnswer(
 
 class MainActivity : AppCompatActivity() {
 
+    //Estruturação das variáveis
     private lateinit var container: FrameLayout
     private lateinit var btnNext: Button
     private lateinit var btnFalar: Button
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    //Lista com todas as informações a se trabalhar
     private val questions: List<Question> = listOf(
         /*
         TextInputQuestion("Nome:"),
@@ -165,6 +167,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Puxando as variáveis do xml associadas aos componentes
         textView = findViewById(R.id.textView)
         container = findViewById(R.id.question_container)
         btnNext = findViewById(R.id.btn_next)
@@ -172,10 +175,13 @@ class MainActivity : AppCompatActivity() {
         btnHowTo = findViewById(R.iCan  d.btnHowto)
         //btnToast = findViewById(R.id.btn_toast)
 
+        //Começar já pondo em tela a 1a questão
         showCurrentQuestion()
 
+        //Mostra assim que abre o app, tbm há o botão para mostrar sempre que desejado
         mostraInstrucoes()
 
+        //Botão avançar as questões, após a última envia pro servidor, que devolve o 
         btnNext.setOnClickListener {
             textView.text = ""//Dá certo isso?
             saveCurrentAnswer()
@@ -205,6 +211,7 @@ class MainActivity : AppCompatActivity() {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
         configurarReconhecimento()
 
+        //COnfiguração botão de fala
         btnFalar.setOnClickListener {
             iniciarReconhecimentoVoz()
         }
@@ -256,6 +263,7 @@ class MainActivity : AppCompatActivity() {
         //subtitle?.text = "Pergunta ${currentIndex + 1} de ${questions.size}"
         title.text = question.title
 
+        //Determina qual pergunta mostra em tela, pela ordem na lista
         if (question is MultipleChoiceQuestion) {
             val group = view.findViewById<RadioGroup>(R.id.options_group)
             group.removeAllViews()
@@ -291,6 +299,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun saveCurrentAnswer() {
+    	//Pelo tipo de pergunta, verifica a forma de guardar a informação
         val question = questions[currentIndex]
         val view = container.getChildAt(0) ?: return
 
@@ -330,6 +339,7 @@ class MainActivity : AppCompatActivity() {
         answers[currentIndex] = response
     }
     private fun salvarRespostasEmCSV() {
+    	//Cria um csv para armazenamento de cada pergunta e sua respectiva resposta
         val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         val csvDir = File(directory, "Arquivos CSV")
         if (!csvDir.exists()) {
@@ -429,6 +439,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun enviarCSV(csvFile: File, pdfFile: File) {
 
+        //Para comunicação com o servidor
         val csvRequest = csvFile.asRequestBody("text/csv".toMediaTypeOrNull())
         val csvPart = MultipartBody.Part.createFormData("files", csvFile.name, csvRequest)
 
@@ -445,7 +456,6 @@ class MainActivity : AppCompatActivity() {
         val parts = listOf(csvPart, pdfPart)
 
 
-        //Parou
         val linhas = csvFile.readLines()
         val tabela = linhas.map { it.split(",") }
         val item11 = tabela.getOrNull(1)?.getOrNull(1)
@@ -552,6 +562,7 @@ class MainActivity : AppCompatActivity() {
                 }, 3000) // 3000 ms = 3 seconds
             }
 
+            //Verificação de toda a lógica pra preenchimento
             override fun onResults(results: Bundle?) {
                 val input = currentQuestionView.findViewById<EditText>(R.id.input_answer)
 
@@ -858,6 +869,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(error: Int) {
+            //Pra  não crashar caso dê algum problema
                 val mensagemErro = when (error) {
                     SpeechRecognizer.ERROR_AUDIO -> "Erro de áudio"
                     SpeechRecognizer.ERROR_CLIENT -> "Erro do cliente (reinicie o app)"

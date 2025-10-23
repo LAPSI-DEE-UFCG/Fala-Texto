@@ -10,7 +10,7 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 
 
-
+//Para comunicação com o servidor
 interface ApiService {
 
     @POST("login")

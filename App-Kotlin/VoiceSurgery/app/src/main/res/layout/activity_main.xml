@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 'Esqueleto' do projeto, com os campos editáveis, as informações em tela e botões -->
+<!-- Nos demais .xml estão as formas de como as caixas com perguntas são estruturadas -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
