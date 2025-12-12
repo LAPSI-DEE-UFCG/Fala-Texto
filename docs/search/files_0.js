@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['servico_2epy_26',['servico.py',['../servico_8py.html',1,'']]]
+  ['readme_2emd_49',['README.md',['../README_8md.html',1,'']]],
+  ['requirements_2etxt_50',['requirements.txt',['../requirements_8txt.html',1,'']]]
 ];
