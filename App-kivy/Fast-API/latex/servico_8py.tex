@@ -1,0 +1,181 @@
+\hypertarget{servico_8py}{}\doxysection{servico.\+py File Reference}
+\label{servico_8py}\index{servico.py@{servico.py}}
+
+
+A\+PI Fast\+A\+PI para processamento de P\+DF, áudio e autenticação facial. S\+P\+D\+X-\/\+License-\/\+Identifier\+: Apache-\/2.\+0 Copyright 2025 Lapsi/\+Fala-\/texto.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classservico_1_1_j_w_t_settings}{servico.\+J\+W\+T\+Settings}}
+\begin{DoxyCompactList}\small\item\em Função/\+Classe \mbox{\hyperlink{classservico_1_1_j_w_t_settings}{J\+W\+T\+Settings}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classservico_1_1_login_model}{servico.\+Login\+Model}}
+\begin{DoxyCompactList}\small\item\em Função/\+Classe \mbox{\hyperlink{classservico_1_1_login_model}{Login\+Model}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{servico_8py_ad047557b15b5ae0ff4cf145b231f6051}\label{servico_8py_ad047557b15b5ae0ff4cf145b231f6051}} 
+J\+W\+T\+Settings \mbox{\hyperlink{servico_8py_ad047557b15b5ae0ff4cf145b231f6051}{servico.\+get\+\_\+jwt\+\_\+settings}} ()
+\begin{DoxyCompactList}\small\item\em Função/\+Classe get\+\_\+jwt\+\_\+settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a1abba4c33558892bd0b41a58f35586c6}\label{servico_8py_a1abba4c33558892bd0b41a58f35586c6}} 
+def \mbox{\hyperlink{servico_8py_a1abba4c33558892bd0b41a58f35586c6}{servico.\+rate\+\_\+limit\+\_\+handler}} (request, exc)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe rate\+\_\+limit\+\_\+handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a5c352f34e29d172a73e2a420447fc63b}\label{servico_8py_a5c352f34e29d172a73e2a420447fc63b}} 
+def \mbox{\hyperlink{servico_8py_a5c352f34e29d172a73e2a420447fc63b}{servico.\+authjwt\+\_\+exception\+\_\+handler}} (request, exc)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe authjwt\+\_\+exception\+\_\+handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_af051849485df02522de70dfb2e45a585}\label{servico_8py_af051849485df02522de70dfb2e45a585}} 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{servico_8py_af051849485df02522de70dfb2e45a585}{servico.\+transcricao\+\_\+pdf}} (str audio\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe transcricao\+\_\+pdf. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_ae2f28dec97792c7248e5d2b26c26ff65}\label{servico_8py_ae2f28dec97792c7248e5d2b26c26ff65}} 
+Dict\mbox{[}str, Optional\mbox{[}str\mbox{]}\mbox{]} \mbox{\hyperlink{servico_8py_ae2f28dec97792c7248e5d2b26c26ff65}{servico.\+listar\+\_\+campos\+\_\+pdf}} (str pdf\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe listar\+\_\+campos\+\_\+pdf. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_aafb70f2636571c7c874721484f3ba7c5}\label{servico_8py_aafb70f2636571c7c874721484f3ba7c5}} 
+Any \mbox{\hyperlink{servico_8py_aafb70f2636571c7c874721484f3ba7c5}{servico.\+preencher\+\_\+campos\+\_\+pdf}} (str pdf\+\_\+path, str output\+\_\+path, Dict\mbox{[}str, Any\mbox{]} data)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe preencher\+\_\+campos\+\_\+pdf. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a80b240e9e821b2bcc778e326707c61f8}\label{servico_8py_a80b240e9e821b2bcc778e326707c61f8}} 
+float \mbox{\hyperlink{servico_8py_a80b240e9e821b2bcc778e326707c61f8}{servico.\+calculate\+\_\+snr\+\_\+speech}} (str audio\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe calculate\+\_\+snr\+\_\+speech. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a142efdab49e184058b4f92b4934e509b}\label{servico_8py_a142efdab49e184058b4f92b4934e509b}} 
+def \mbox{\hyperlink{servico_8py_a142efdab49e184058b4f92b4934e509b}{servico.\+analyze\+\_\+audio}} (str audio\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe analyze\+\_\+audio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a45709b6638cec98ad38c2b724d3bc9bd}\label{servico_8py_a45709b6638cec98ad38c2b724d3bc9bd}} 
+bool \mbox{\hyperlink{servico_8py_a45709b6638cec98ad38c2b724d3bc9bd}{servico.\+authenticate\+\_\+face\+\_\+multi}} (str captura\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe authenticate\+\_\+face\+\_\+multi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a8f69af5043f197cbdeb1b86803029dbb}\label{servico_8py_a8f69af5043f197cbdeb1b86803029dbb}} 
+def \mbox{\hyperlink{servico_8py_a8f69af5043f197cbdeb1b86803029dbb}{servico.\+extract\+\_\+pdf\+\_\+image}} (str pdf\+\_\+path, str image\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe extract\+\_\+pdf\+\_\+image. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{servico_8py_a964027989375cfe1065f7a80646e64a2}{servico.\+preprocess\+\_\+audio}} (input\+\_\+path, output\+\_\+path=\textquotesingle{}processed\+\_\+audio.\+wav\textquotesingle{}, target\+\_\+sr=16000)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe preprocess\+\_\+audio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a7b2e3c929b02fa227d47aca6de054b9e}\label{servico_8py_a7b2e3c929b02fa227d47aca6de054b9e}} 
+def \mbox{\hyperlink{servico_8py_a7b2e3c929b02fa227d47aca6de054b9e}{servico.\+home}} (Request request)
+\begin{DoxyCompactList}\small\item\em Função/\+Classe home. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a547344dc9f2421075498d48ae7fa2c04}\label{servico_8py_a547344dc9f2421075498d48ae7fa2c04}} 
+def \mbox{\hyperlink{servico_8py_a547344dc9f2421075498d48ae7fa2c04}{servico.\+login}} (Request request, Login\+Model data, Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe login. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_acc378a22c981d505d88a7b572eefe44f}\label{servico_8py_acc378a22c981d505d88a7b572eefe44f}} 
+def \mbox{\hyperlink{servico_8py_acc378a22c981d505d88a7b572eefe44f}{servico.\+listar\+\_\+campos}} (Request request, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe listar\+\_\+campos. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a85b7e4833a02d5a9d2a2d292bfc0a185}\label{servico_8py_a85b7e4833a02d5a9d2a2d292bfc0a185}} 
+def \mbox{\hyperlink{servico_8py_a85b7e4833a02d5a9d2a2d292bfc0a185}{servico.\+preencher\+\_\+campos}} (Request request, Background\+Tasks background\+\_\+tasks, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe preencher\+\_\+campos. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a63d75bd7ad5af5f406683e1923b09960}\label{servico_8py_a63d75bd7ad5af5f406683e1923b09960}} 
+def \mbox{\hyperlink{servico_8py_a63d75bd7ad5af5f406683e1923b09960}{servico.\+autenticacao}} (Request request, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe autenticacao. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a069e538f23d39a73713c593b03c32ad0}\label{servico_8py_a069e538f23d39a73713c593b03c32ad0}} 
+def \mbox{\hyperlink{servico_8py_a069e538f23d39a73713c593b03c32ad0}{servico.\+imagem}} (Request request, Background\+Tasks background\+\_\+tasks, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe imagem. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a0745140c10fd76e97fe1bee1d4360970}\label{servico_8py_a0745140c10fd76e97fe1bee1d4360970}} 
+def \mbox{\hyperlink{servico_8py_a0745140c10fd76e97fe1bee1d4360970}{servico.\+transcricao}} (Request request, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe transcricao. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_acc09c09c89afca3190331a22ea183480}\label{servico_8py_acc09c09c89afca3190331a22ea183480}} 
+def \mbox{\hyperlink{servico_8py_acc09c09c89afca3190331a22ea183480}{servico.\+upload\+\_\+imagem}} (Request request, Upload\+File file=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe upload\+\_\+imagem. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{servico_8py_a15893002b88c64e82756c0c3ec041f18}\label{servico_8py_a15893002b88c64e82756c0c3ec041f18}} 
+def \mbox{\hyperlink{servico_8py_a15893002b88c64e82756c0c3ec041f18}{servico.\+preencher\+\_\+pdf}} (Request request, Background\+Tasks background\+\_\+tasks, List\mbox{[}Upload\+File\mbox{]} files=File(...), Auth\+J\+WT Authorize=Depends())
+\begin{DoxyCompactList}\small\item\em Função/\+Classe preencher\+\_\+pdf. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list {\bfseries servico.\+origins}
+\item 
+{\bfseries servico.\+app}
+\item 
+\mbox{\Hypertarget{servico_8py_a0328c82e8b9907ef62ef6f8fc237897f}\label{servico_8py_a0328c82e8b9907ef62ef6f8fc237897f}} 
+{\bfseries servico.\+name}
+\item 
+\mbox{\Hypertarget{servico_8py_a99d496680e736ae490b1e97a81d5d07f}\label{servico_8py_a99d496680e736ae490b1e97a81d5d07f}} 
+{\bfseries servico.\+allow\+\_\+origins}
+\item 
+\mbox{\Hypertarget{servico_8py_a547a8ddb840625ffab849255c72537cd}\label{servico_8py_a547a8ddb840625ffab849255c72537cd}} 
+{\bfseries servico.\+allow\+\_\+credentials}
+\item 
+\mbox{\Hypertarget{servico_8py_a981c8ed46ffa55d8c42e82bae5399b73}\label{servico_8py_a981c8ed46ffa55d8c42e82bae5399b73}} 
+{\bfseries servico.\+allow\+\_\+methods}
+\item 
+\mbox{\Hypertarget{servico_8py_a3522c421187e94692514c4e9bbd0ec7b}\label{servico_8py_a3522c421187e94692514c4e9bbd0ec7b}} 
+{\bfseries servico.\+allow\+\_\+headers}
+\item 
+\mbox{\Hypertarget{servico_8py_ab566b1d9ddf4e56722db38585275a89d}\label{servico_8py_ab566b1d9ddf4e56722db38585275a89d}} 
+{\bfseries servico.\+templates} = Jinja2\+Templates(directory=\char`\"{}templates\char`\"{})
+\item 
+\mbox{\Hypertarget{servico_8py_a4a79e80d58f32f892b22e3738ecb8a2c}\label{servico_8py_a4a79e80d58f32f892b22e3738ecb8a2c}} 
+{\bfseries servico.\+limiter} = Limiter(key\+\_\+func=get\+\_\+remote\+\_\+address)
+\item 
+\mbox{\Hypertarget{servico_8py_ae64e693c606c2222dbd34869faa8b845}\label{servico_8py_ae64e693c606c2222dbd34869faa8b845}} 
+{\bfseries servico.\+pwd\+\_\+context} = Crypt\+Context(schemes=\mbox{[}\char`\"{}bcrypt\char`\"{}\mbox{]}, deprecated=\char`\"{}auto\char`\"{})
+\item 
+\mbox{\Hypertarget{servico_8py_aa23bed55fed8d0a5fa024e6c38e8a800}\label{servico_8py_aa23bed55fed8d0a5fa024e6c38e8a800}} 
+dictionary {\bfseries servico.\+usuarios} = \{\char`\"{}Fala-\/texto\char`\"{}\+: pwd\+\_\+context.\+hash(\char`\"{}Transcrição\+\_\+de\+\_\+fala\+\_\+em\+\_\+texto\+\_\+api\char`\"{}),\char`\"{}whisperadm\char`\"{}\+: pwd\+\_\+context.\+hash(\char`\"{}Transcrição\+\_\+de\+\_\+fala\+\_\+api\char`\"{}),\}
+\item 
+\mbox{\Hypertarget{servico_8py_ad506493ed3113e0ea8b9d73bb20cb35a}\label{servico_8py_ad506493ed3113e0ea8b9d73bb20cb35a}} 
+string {\bfseries servico.\+U\+P\+L\+O\+A\+D\+\_\+\+F\+O\+L\+D\+ER} = \char`\"{}uploads\char`\"{}
+\item 
+\mbox{\Hypertarget{servico_8py_a33ad6093984498f59c2463abd1fc80ed}\label{servico_8py_a33ad6093984498f59c2463abd1fc80ed}} 
+string {\bfseries servico.\+I\+M\+A\+G\+E\+\_\+\+F\+O\+L\+D\+ER} = \char`\"{}imagens\char`\"{}
+\item 
+\mbox{\Hypertarget{servico_8py_a49821fffc0075b839787e8f65d5ff79f}\label{servico_8py_a49821fffc0075b839787e8f65d5ff79f}} 
+{\bfseries servico.\+exist\+\_\+ok}
+\item 
+\mbox{\Hypertarget{servico_8py_af74e6ea4caf0fb779fbf245a9d38e33e}\label{servico_8py_af74e6ea4caf0fb779fbf245a9d38e33e}} 
+string {\bfseries servico.\+device} = \char`\"{}cuda\char`\"{} if torch.\+cuda.\+is\+\_\+available() else \char`\"{}cpu\char`\"{}
+\item 
+\mbox{\Hypertarget{servico_8py_ac49fcb28d05c256f1ae82f7c9670c7d5}\label{servico_8py_ac49fcb28d05c256f1ae82f7c9670c7d5}} 
+{\bfseries servico.\+modelo} = whisper.\+load\+\_\+model(\char`\"{}turbo\char`\"{}, device=device)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A\+PI Fast\+A\+PI para processamento de P\+DF, áudio e autenticação facial. S\+P\+D\+X-\/\+License-\/\+Identifier\+: Apache-\/2.\+0 Copyright 2025 Lapsi/\+Fala-\/texto. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{servico_8py_a964027989375cfe1065f7a80646e64a2}\label{servico_8py_a964027989375cfe1065f7a80646e64a2}} 
+\index{servico.py@{servico.py}!preprocess\_audio@{preprocess\_audio}}
+\index{preprocess\_audio@{preprocess\_audio}!servico.py@{servico.py}}
+\doxysubsubsection{\texorpdfstring{preprocess\_audio()}{preprocess\_audio()}}
+{\footnotesize\ttfamily def servico.\+preprocess\+\_\+audio (\begin{DoxyParamCaption}\item[{}]{input\+\_\+path,  }\item[{}]{output\+\_\+path = {\ttfamily \textquotesingle{}processed\+\_\+audio.wav\textquotesingle{}},  }\item[{}]{target\+\_\+sr = {\ttfamily 16000} }\end{DoxyParamCaption})}
+
+
+
+Função/\+Classe preprocess\+\_\+audio. 
+
+\begin{DoxyVerb}Pre-processa o áudio:
+1. Converte para mono e 16kHz.
+2. Aplica redução de ruído.
+3. Normaliza o sinal.
+4. Salva um WAV 16-bit PCM em UPLOAD_FOLDER.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{servico_8py_a98e119550d4c05bfa52492fa06cef3b6}\label{servico_8py_a98e119550d4c05bfa52492fa06cef3b6}} 
+\index{servico.py@{servico.py}!app@{app}}
+\index{app@{app}!servico.py@{servico.py}}
+\doxysubsubsection{\texorpdfstring{app}{app}}
+{\footnotesize\ttfamily servico.\+app}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  FastAPI(}
+\DoxyCodeLine{2     title=\textcolor{stringliteral}{"API FastAPI: PDF, Áudio e Face"},}
+\DoxyCodeLine{3     docs\_url=\textcolor{keywordtype}{None},     \textcolor{comment}{\# Desabilita /docs}}
+\DoxyCodeLine{4     redoc\_url=\textcolor{keywordtype}{None},    \textcolor{comment}{\# Desabilita /redoc}}
+\DoxyCodeLine{5     openapi\_url=\textcolor{keywordtype}{None}   \textcolor{comment}{\# Desabilita /openapi.json}}
+\DoxyCodeLine{6 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{servico_8py_acba8f8338d9dd7129b1ffeb88444bc61}\label{servico_8py_acba8f8338d9dd7129b1ffeb88444bc61}} 
+\index{servico.py@{servico.py}!origins@{origins}}
+\index{origins@{origins}!servico.py@{servico.py}}
+\doxysubsubsection{\texorpdfstring{origins}{origins}}
+{\footnotesize\ttfamily list servico.\+origins}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     \textcolor{stringliteral}{"https://processarcadastro.cyberedu.com.br"},  \textcolor{comment}{\# substitua pelo domínio real}}
+\DoxyCodeLine{3 ]}
+
+\end{DoxyCode}

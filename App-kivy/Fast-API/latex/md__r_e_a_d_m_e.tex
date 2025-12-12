@@ -1,0 +1,99 @@
+\mbox{[}\mbox{]}(L\+I\+C\+E\+N\+SE)\hypertarget{md__r_e_a_d_m_e_autotoc_md0}{}\doxysection{Fala-\/\+Texto}\label{md__r_e_a_d_m_e_autotoc_md0}
+   Este documento instrui como implementar o serviço de preenchimento de formulários em um servidor Ubuntu v20.\+04+ com Gpu N\+V\+I\+D\+IA e seus drivers.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{Pré-\/requisitos\+:}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Ambiente linux\+: Ubuntu
+\item Docker
+\item Nginx
+\item N\+V\+I\+D\+IA Container Toolkit
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsubsection{Instalação de dependencias}\label{md__r_e_a_d_m_e_autotoc_md2}
+Para começar, instale o Docker e o Nginx executando os comandos abaixo.
+
+Docker\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt update}
+\DoxyCodeLine{sudo apt install -\/y apt-\/transport-\/https ca-\/certificates curl software-\/properties-\/common}
+\DoxyCodeLine{curl -\/fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg -\/-\/dearmor -\/o /usr/share/keyrings/docker-\/archive-\/keyring.gpg}
+\DoxyCodeLine{echo "deb [arch=\$(dpkg -\/-\/print-\/architecture) signed-\/by=/usr/share/keyrings/docker-\/archive-\/keyring.gpg] https://download.docker.com/linux/ubuntu \$(lsb\_release -\/cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null}
+\DoxyCodeLine{sudo apt update}
+\DoxyCodeLine{sudo apt install -\/y docker-\/ce docker-\/ce-\/cli containerd.io}
+\end{DoxyCode}
+
+
+Verifique se a instalação foi bem-\/sucedida\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{docker -\/-\/version}
+\end{DoxyCode}
+
+
+Nginx\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt update  }
+\DoxyCodeLine{sudo apt install -\/y nginx  }
+\end{DoxyCode}
+
+
+N\+V\+I\+D\+IA Container Toolkit\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{curl -\/fsSL https://nvidia.github.io/libnvidia-\/container/gpgkey | sudo gpg -\/-\/dearmor -\/o /usr/share/keyrings/nvidia-\/container-\/toolkit-\/keyring.gpg \(\backslash\)}
+\DoxyCodeLine{  \&\& curl -\/s -\/L https://nvidia.github.io/libnvidia-\/container/stable/deb/nvidia-\/container-\/toolkit.list | \(\backslash\)}
+\DoxyCodeLine{    sed 's\#deb https://\#deb [signed-\/by=/usr/share/keyrings/nvidia-\/container-\/toolkit-\/keyring.gpg] https://\#g' | \(\backslash\)}
+\DoxyCodeLine{    sudo tee /etc/apt/sources.list.d/nvidia-\/container-\/toolkit.list}
+\DoxyCodeLine{sudo apt-\/get update}
+\DoxyCodeLine{export NVIDIA\_CONTAINER\_TOOLKIT\_VERSION=1.17.8-\/1}
+\DoxyCodeLine{  sudo apt-\/get install -\/y \(\backslash\)}
+\DoxyCodeLine{      nvidia-\/container-\/toolkit=\$\{NVIDIA\_CONTAINER\_TOOLKIT\_VERSION\} \(\backslash\)}
+\DoxyCodeLine{      nvidia-\/container-\/toolkit-\/base=\$\{NVIDIA\_CONTAINER\_TOOLKIT\_VERSION\} \(\backslash\)}
+\DoxyCodeLine{      libnvidia-\/container-\/tools=\$\{NVIDIA\_CONTAINER\_TOOLKIT\_VERSION\} \(\backslash\)}
+\DoxyCodeLine{      libnvidia-\/container1=\$\{NVIDIA\_CONTAINER\_TOOLKIT\_VERSION\}}
+\end{DoxyCode}
+
+
+configurando o container runtime\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo nvidia-\/ctk runtime configure -\/-\/runtime=docker}
+\DoxyCodeLine{sudo systemctl restart docker}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxyparagraph{Implementando o container Docker}\label{md__r_e_a_d_m_e_autotoc_md3}
+Agora é hora de executar o container que irá disponibilizar o serviço de preenchimento. Antes disso, baixe os arquivos da pasta A\+P\+I-\/fastapi desse repositório e certifique-\/se de que o diretório do projeto esteja com a seguinte estrutura\+:
+
+/meu\+\_\+projeto
+
+  
+
+No diretório do projeto execute o comando abaixo para contruir a imagem Docker\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo docker build -\/t nome-\/da-\/imagem .}
+\DoxyCodeLine{sudo docker images}
+\end{DoxyCode}
+
+
+Depois de confirmar que as portas especificadas no Dockerfile e em \mbox{\hyperlink{servico_8py}{servico.\+py}} estão iguais, execute o comando abaixo para subir o container. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo docker run -\/d -\/p 3050:3050 -\/-\/restart always -\/m 6g -\/-\/gpus all -\/v endereço-\/da-\/pasta-\/do-\/volume:/app/imagens nome-\/da-\/imagem}
+\DoxyCodeLine{sudo docker ps -\/a}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxyparagraph{Configurando o Nginx}\label{md__r_e_a_d_m_e_autotoc_md4}
+Você deve permitir conexões http/https do Nginx no seu servidor. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo ufw allow 'Nginx Full'}
+\DoxyCodeLine{sudo ufw reload}
+\DoxyCodeLine{sudo ufw status }
+\end{DoxyCode}
+
+
+Agora, mova o arquivo \textquotesingle{}Processo\textquotesingle{}, que contém toda a configuração necessária para o Nginx expor o serviço para o domínio público, para esse diretório\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo mv endereço-\/de-\/origem/Processo /etc/nginx/sites-\/available/Processo}
+\DoxyCodeLine{sudo ln -\/s /etc/nginx/sites-\/available/default /etc/nginx/sites-\/enabled/}
+\end{DoxyCode}
+
+
+Consolidando essas configurações\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo nginx -\/t}
+\DoxyCodeLine{sudo systemctl restart nginx}
+\end{DoxyCode}
+
+
+Assim, o serviço esta funcionando normalmente ao final desses passos e o App cliente já pode estabelecer requisições. 
