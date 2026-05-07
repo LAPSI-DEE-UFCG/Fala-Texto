@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="14sp"/>
+
+    <!-- Container para as perguntas -->
+    <FrameLayout
+        android:id="@+id/question_container"
+        android:layout_width="match_parent"
+        android:layout_height="491dp"
+        android:layout_weight="1" />
+
+
+    <Button
+        android:id="@+id/btnHowto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\?"
+        android:clickable="true"
+        android:backgroundTint="#1A3A7C"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Botão para gravar -->
+    <Button
+        android:id="@+id/btnFalar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Falar"
+        android:clickable="true"
+        android:backgroundTint="#1A3A7C"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcrição"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginBottom="28dp"/>
+
+
+    <!-- Botão para pergunta anterior -->
+    <Button
+        android:id="@+id/btn_previous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anterior"
+        android:backgroundTint="#1A3A7C"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Botão para próxima pergunta -->
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Próxima"
+        android:backgroundTint="#1A3A7C"
+        android:textColor="@color/white"
+        android:layout_marginBottom="48dp"/>
+</LinearLayout>

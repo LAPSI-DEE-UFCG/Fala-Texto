@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/question_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:textColor="#000000"
+        android:visibility="invisible" />
+    <TextView
+        android:id="@+id/question_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pergunta"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/options_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/question_title1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pergunta 1:"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/input_answer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  />
+    <!--android:onClick="handleClick1"-->
+
+
+    <TextView
+        android:id="@+id/question_title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pergunta 2:"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/input_answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <!--android:onClick="handleClick2"-->
+
+</LinearLayout>

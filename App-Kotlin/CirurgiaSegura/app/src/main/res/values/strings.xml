@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cirurgia Segura</string>
+
+    <string name="questions_hint">
+    Ex:\n
+    Nome?\n
+    Idade?\n
+    (Para perguntas de múltipla escolha:)\n
+    Cor Favorita: Azul/Amarelo/Vermelho\n
+    (Para perguntas em um Checkbox:)\n
+    Disciplinas Matriculadas: Cálculo 1|Algebra Vetorial|Física Geral 1\n
+    (Para divisão do Formulário em tópicos. Neste caso é salvo o tempo em que o usuário avança para as questões)\n
+    *Antes da Indução Anestésica\n\t\t\t\t\t\tou\n*Antes da Saída do Paciente da Sala de Cirurgia
+    </string>
+
+</resources>
+
